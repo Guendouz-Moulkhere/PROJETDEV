@@ -7,9 +7,15 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
         stage('Deploy') {
             steps {
-                sh 'mvn spring-boot:run'
+                echo 'Deploying....'
+               
             }
         }
     }
