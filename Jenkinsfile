@@ -1,23 +1,17 @@
 pipeline {
     agent any
-
+    
     stages {
-        stage('Build') {
+        stage('Example') {
             steps {
-                sh 'mvn clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                // Add your deployment steps here
+                script {
+                    if (isUnix()) {
+                        sh 'commande_unix'
+                    } else {
+                        bat 'commande_windows'
+                    }
+                }
             }
         }
     }
 }
-
