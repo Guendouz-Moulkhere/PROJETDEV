@@ -1,16 +1,15 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Example') {
+        stage('Build') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'commande_unix'
-                    } else {
-                        bat 'commande_windows'
-                    }
-                }
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'mvn spring-boot:run'
             }
         }
     }
